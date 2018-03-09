@@ -1,38 +1,79 @@
-import hudson.model.FreeStyleProject;
-import hudson.plugins.git.GitSCM;
-import hudson.plugins.git.BranchSpec;
-import hudson.triggers.SCMTrigger;
-import hudson.util.Secret;
-import javaposse.jobdsl.plugin.*;
-import jenkins.model.Jenkins;
-import jenkins.model.JenkinsLocationConfiguration;
-import com.cloudbees.plugins.credentials.CredentialsScope;
-import com.cloudbees.plugins.credentials.domains.Domain;
-import com.cloudbees.plugins.credentials.SystemCredentialsProvider;
-import jenkins.model.JenkinsLocationConfiguration;
-import org.jenkinsci.plugins.ghprb.GhprbGitHubAuth;
-import org.jenkinsci.plugins.ghprb.GhprbTrigger.DescriptorImpl;
-import org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl;
-import org.jenkinsci.plugins.plaincredentials.impl.StringCredentialsImpl.DescriptorImpl;
-import org.jenkinsci.plugins.scriptsecurity.sandbox.Whitelist;
-import org.jenkinsci.plugins.scriptsecurity.sandbox.whitelists.BlanketWhitelist;
-import org.jenkinsci.plugins.workflow.job.WorkflowJob;
-import org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition;
-
 gitRepoUrl = System.getenv("JENKINS_SEED_GIT_REPO_URL")
 gitCredentialsId = System.getevn("JENKINS_SEED_GIT_CREDENTIALS_ID")
 
-jobName = "seed";
-gitTrigger = new SCMTrigger("* * * * *");
-dslBuilder = new ExecuteDslScripts(scriptLocation = new ExecuteDslScripts.ScriptLocation(value = "false", targets="main.groovy", scriptText=""), ignoreExisting=false, removedJobAction=RemovedJobAction.DELETE, removedViewAction=RemovedViewAction.DELETE);
+import jenkins.model.*
 
-dslProject = new hudson.model.FreeStyleProject(jenkins, jobName);
-dslProject.scm = new GitSCM(gitRepoUrl);
-dslProject.scm.branches = [new BranchSpec("*/master")];
-dslProject.addTrigger(gitTrigger);
-dslProject.createTransientActions();
-dslProject.getPublishersList().add(dslBuilder);
+def jobName = "seed"
 
-jenkins.add(dslProject, jobName);
+def configXml = """\
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.27">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.8.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>${gitRepoUrl}</url>
+        <credentialsId>${girCredentialsId}</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers>
+    <hudson.triggers.SCMTrigger>
+      <spec>* * * * *</spec>
+      <ignorePostCommitHooks>false</ignorePostCommitHooks>
+    </hudson.triggers.SCMTrigger>
+  </triggers>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.68">
+      <targets>main.groovy</targets>
+      <usingScriptText>false</usingScriptText>
+      <sandbox>false</sandbox>
+      <ignoreExisting>false</ignoreExisting>
+      <ignoreMissingFiles>false</ignoreMissingFiles>
+      <failOnMissingPlugin>false</failOnMissingPlugin>
+      <unstableOnDeprecation>false</unstableOnDeprecation>
+      <removedJobAction>DELETE</removedJobAction>
+      <removedViewAction>DELETE</removedViewAction>
+      <removedConfigFilesAction>IGNORE</removedConfigFilesAction>
+      <lookupStrategy>JENKINS_ROOT</lookupStrategy>
+    </javaposse.jobdsl.plugin.ExecuteDslScripts>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>
+""".stripIndent()
 
-gitTrigger.start(dslProject, true);
+
+if (!Jenkins.instance.getItem(jobName)) {
+  def xmlStream = new ByteArrayInputStream(configXml.getBytes())
+
+  try {
+    def seedJob = Jenkins.instance.createProjectFromXML(jobName, xmlStream)
+    seedJob.scheduleBuild(0, null)
+  } catch (ex) {
+    println "ERROR: ${ex}"
+    println configXml.stripIndent()
+  }
+}
