@@ -18,7 +18,7 @@ credentials_store =
     'com.cloudbees.plugins.credentials.SystemCredentialsProvider'
   )[0].getStore()
 
-credentials = new BasicSSHUserPrivateKey(CredentialsScope.GLOBAL,null,"root",new BasicSSHUserPrivateKey.UsersPrivateKeySource(),"","")
+credentials = new BasicSSHUserPrivateKey(CredentialsScope.GLOBAL, null, "root", new BasicSSHUserPrivateKey.UsersPrivateKeySource(), "", "")
 
 credentials_store.addCredentials(global_domain, credentials)
 
@@ -76,14 +76,14 @@ def strategy = new GlobalMatrixAuthorizationStrategy()
 //strategy.add(hudson.model.View.READ,'charles')
 
 //  Setting Anonymous Permissions
-strategy.add(hudson.model.Hudson.READ,'anonymous')
-strategy.add(hudson.model.Item.BUILD,'anonymous')
-strategy.add(hudson.model.Item.CANCEL,'anonymous')
-strategy.add(hudson.model.Item.DISCOVER,'anonymous')
-strategy.add(hudson.model.Item.READ,'anonymous')
+//strategy.add(hudson.model.Hudson.READ,'anonymous')
+//strategy.add(hudson.model.Item.BUILD,'anonymous')
+//strategy.add(hudson.model.Item.CANCEL,'anonymous')
+//strategy.add(hudson.model.Item.DISCOVER,'anonymous')
+//strategy.add(hudson.model.Item.READ,'anonymous')
 
 // Setting Admin Permissions
-strategy.add(Jenkins.ADMINISTER, "admin")
+strategy.add(Jenkins.ADMINISTER, adminUsername)
 
 // Setting easy settings for local builds
 def local = System.getenv("BUILD").toString()
