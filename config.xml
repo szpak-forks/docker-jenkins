@@ -8,7 +8,7 @@
   </installState>
   <numExecutors>3</numExecutors>
   <mode>NORMAL</mode>
-  <useSecurity>false</useSecurity>
+  <useSecurity>true</useSecurity>
   <authorizationStrategy class="hudson.security.FullControlOnceLoggedInAuthorizationStrategy">
     <denyAnonymousReadAccess>true</denyAnonymousReadAccess>
   </authorizationStrategy>
