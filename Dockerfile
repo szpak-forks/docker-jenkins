@@ -2,7 +2,7 @@ FROM jenkins/jenkins:lts-alpine
 
 USER root
 
-RUN apk add --update docker && rm -rf /var/cache/apk/*; chmod 666 /var/run/docker.sock
+RUN apk add --update docker && rm -rf /var/cache/apk/*; touch /var/run/docker.sock && chmod 666 /var/run/docker.sock
 
 USER jenkins
 
