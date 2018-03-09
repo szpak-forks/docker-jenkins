@@ -22,7 +22,7 @@ def configXml = """\
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
         <url>${gitRepoUrl}</url>
-        <credentialsId>${girCredentialsId}</credentialsId>
+        <credentialsId>${gitCredentialsId}</credentialsId>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
