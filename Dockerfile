@@ -2,7 +2,7 @@ FROM jenkins/jenkins:lts-alpine
 
 USER root
 
-RUN apk add docker
+RUN apk add --update docker && rm -rf /var/cache/apk/*
 
 USER jenkins
 
