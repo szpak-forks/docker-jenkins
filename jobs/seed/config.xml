@@ -14,7 +14,7 @@
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
         <url>$JENING_SEED_GIT_REPO_URL</url>
-        <credentialsId>JENKINS_SEED_GIT_CREDENTIALS_ID</credentialsId>
+        <credentialsId>$JENKINS_SEED_GIT_CREDENTIALS_ID</credentialsId>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
