@@ -7,3 +7,12 @@ rebuild
 saferestart
 simple-theme
 timestamper
+build-timeout
+cloudbees-folder
+credentials-binding
+ws-cleanup
+gradle
+workflow-aggregator
+git
+matrix-auth
+pipeline-stage-view

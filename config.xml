@@ -2,6 +2,10 @@
 <hudson>
   <disabledAdministrativeMonitors/>
   <version></version>
+  <installState>
+    <isSetupComplete>true</isSetupComplete>
+    <name>RUNNING</name>
+  </installState>
   <numExecutors>3</numExecutors>
   <mode>NORMAL</mode>
   <useSecurity>false</useSecurity>
