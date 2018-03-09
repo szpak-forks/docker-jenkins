@@ -4,7 +4,6 @@ jenkinslint
 job-dsl
 locale
 rebuild
-saferestart
 simple-theme
 timestamper
 build-timeout
