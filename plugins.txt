@@ -1,9 +1,9 @@
-AnsiColor
-Extra Columns
-JenkinsLint
-Job DSL
-Locale
-Rebuild
-SafeRestart
-Simple Theme
-Timestamper
+ansicolor
+extra-columns
+jenkinslint
+job-dsl
+locale
+rebuild
+saferestart
+simple-theme
+timestamper
