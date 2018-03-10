@@ -5,6 +5,7 @@ DOCKER_GROUP=docker
 
 if [ -S ${DOCKER_SOCKET} ]; then
     DOCKER_GID=$(stat -c '%g' ${DOCKER_SOCKET})
-    groupadd -fr -g ${DOCKER_GID} ${DOCKER_GROUP}
-    usermod -aG ${DOCKER_GROUP} ${JENKINS_USER}
+
+    addgroup -g ${DOCKER_GID} ${DOCKER_GROUP}
+    adduser jenkins ${DOCKER_GROUP}
 fi

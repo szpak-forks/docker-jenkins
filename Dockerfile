@@ -17,4 +17,4 @@ RUN chmod 755 /usr/local/bin/jenkins-*.sh && chmod u+s /usr/local/bin/jenkins-do
 
 USER jenkins
 
-ENTRYPOINT ["/usr/local/bin/jenkins-boot.sh", "/sbin/tini", "--", "/usr/local/bin/jenkins.sh"]
+ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/jenkins-boot.sh"]
