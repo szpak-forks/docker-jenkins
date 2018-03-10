@@ -2,7 +2,7 @@
 
 echo "Adding jenkins to docker group..."
 
-/usr/local/bin/jenkins-docker-group.sh
+sudo /usr/local/bin/jenkins-docker-group.sh
 
 echo "Running jenkins..."
 
