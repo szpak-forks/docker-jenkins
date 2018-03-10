@@ -11,6 +11,9 @@ COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 
 COPY jenkins-boot.sh /usr/local/bin/jenkins-boot.sh
+COPY jenkins-docker-group.sh /usr/local/bin/jenkins-docker-group.sh
+
+RUN chmod u+s /usr/local/bin/jenkins-docker-group.sh
 
 USER jenkins
 
