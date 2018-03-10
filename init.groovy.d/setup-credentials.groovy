@@ -13,6 +13,9 @@ store = Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.Sys
 def dir = new File("/credentials/git-keys")
 
 dir.eachFileRecurse(FileType.FILES) { file ->
+  if(file.name.endsWith(".pub"))
+    return
+
   privateKey = new BasicSSHUserPrivateKey(
     CredentialsScope.GLOBAL,
     file.name,
