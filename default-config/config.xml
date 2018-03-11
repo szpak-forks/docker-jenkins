@@ -46,6 +46,7 @@
         <hudson.views.LastFailureColumn/>
         <hudson.views.LastDurationColumn/>
         <hudson.views.BuildButtonColumn/>
+        <jenkins.plugins.extracolumns.ConfigureProjectColumn plugin="extra-columns@1.18"/>
         <jenkins.plugins.extracolumns.LastBuildConsoleColumn plugin="extra-columns@1.18"/>
       </columns>
       <includeRegex>.*</includeRegex>
