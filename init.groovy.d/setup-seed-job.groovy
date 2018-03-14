@@ -1,5 +1,5 @@
-gitRepoUrl = System.getenv("JENKINS_SEED_GIT_REPO_URL")
-gitCredentialsId = System.getenv("JENKINS_SEED_GIT_CREDENTIALS_ID")
+def gitRepoUrl = System.getenv("JENKINS_SEED_GIT_REPO_URL")
+def gitCredentialsId = System.getenv("JENKINS_SEED_GIT_CREDENTIALS_ID")
 
 import jenkins.model.*
 
