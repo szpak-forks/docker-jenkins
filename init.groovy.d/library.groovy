@@ -27,6 +27,7 @@ import org.jenkinsci.plugins.workflow.libs.GlobalLibraries
 import org.jenkinsci.plugins.workflow.libs.LibraryConfiguration
 import org.jenkinsci.plugins.workflow.libs.SCMSourceRetriever
 import net.sf.json.JSONObject
+import jenkins.model.*
 
 /**
   Function to compare if the two global shared libraries are equal.
