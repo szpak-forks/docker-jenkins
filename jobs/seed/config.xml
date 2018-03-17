@@ -51,6 +51,11 @@
       <removedConfigFilesAction>IGNORE</removedConfigFilesAction>
       <lookupStrategy>JENKINS_ROOT</lookupStrategy>
     </javaposse.jobdsl.plugin.ExecuteDslScripts>
+    <hudson.plugins.groovy.SystemGroovy plugin="groovy@2.0">
+      <source class="hudson.plugins.groovy.FileSystemScriptSource">
+        <scriptFile>configuration-seed.groovy</scriptFile>
+      </source>
+    </hudson.plugins.groovy.SystemGroovy>
   </builders>
   <publishers/>
   <buildWrappers/>
