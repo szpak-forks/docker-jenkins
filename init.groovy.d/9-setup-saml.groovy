@@ -6,7 +6,7 @@ import org.jenkinsci.plugins.saml.*
 def idpMetadataUrl = System.getenv('JENKINS_SAML_IDP_METADATA_URL') ?: ''
 
 if(idpMetadataUrl != '') {
-  println('Setting up SAML with IdP metadata from ${idpMetadataUrl}...')
+  println("Setting up SAML with IdP metadata from ${idpMetadataUrl}...")
 
   def instance = Jenkins.getInstance()
 
