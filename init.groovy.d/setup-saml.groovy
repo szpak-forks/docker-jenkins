@@ -11,7 +11,7 @@ if(idpMetadataUrl != '') {
   def instance = Jenkins.getInstance()
 
   def samlRealm = new SamlSecurityRealm(
-    new IdpMetadataConfiguration(idpMetadataUrl),
+    new IdpMetadataConfiguration(idpMetadataUrl, 60),
     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
     "http://schemas.xmlsoap.org/claims/Group",
     86400,
