@@ -1,4 +1,4 @@
-import jenkins.*
+import hudson.model.*
 
 def themeColor = System.getenv('JENKINS_THEME_COLOR') ?: 'grey'
 
