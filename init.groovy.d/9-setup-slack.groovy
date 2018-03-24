@@ -26,7 +26,7 @@ if(slackToken != '' && slackCompany != '') {
     slackBuildServerUrl: System.getenv('JENKINS_URL'),
     slackRoom: '#jenkins',
     slackSendAs: 'Jenkins',
-    slackTeamDomain: "${slackCompany}",
+    slackTeamDomain: slackCompany,
     slackToken: '',
     slackTokenCredentialId:   'slack-token'
   ]
