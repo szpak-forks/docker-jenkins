@@ -1,11 +1,11 @@
-import jenkins.model.*
-import hudson.security.*
-import hudson.util.Secret
-import org.jenkinsci.plugins.saml.*
-
 def idpMetadataUrl = System.getenv('JENKINS_SAML_IDP_METADATA_URL') ?: ''
 
 if(idpMetadataUrl != '') {
+  import jenkins.model.*
+  import hudson.security.*
+  import hudson.util.Secret
+  import org.jenkinsci.plugins.saml.*
+
   println("Setting up SAML with IdP metadata from ${idpMetadataUrl}...")
 
   def instance = Jenkins.getInstance()
