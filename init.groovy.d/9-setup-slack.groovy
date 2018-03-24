@@ -21,7 +21,7 @@ if(slackToken != '' && slackCompany != '') {
   ]
 
   def slackParameters = [
-    slackBaseUrl: 'https://' + slackCompany + '.slack.com/services/hooks/jenkins-ci/",
+    slackBaseUrl: "https://${slackCompany}.slack.com/services/hooks/jenkins-ci/".toString(),
     slackBotUser: 'true',
     slackBuildServerUrl: System.getenv('JENKINS_URL'),
     slackRoom: '#jenkins',
