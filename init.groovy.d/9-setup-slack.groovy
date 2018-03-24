@@ -1,18 +1,18 @@
+import com.cloudbees.jenkins.plugins.sshcredentials.impl.*
+import com.cloudbees.plugins.credentials.*
+import com.cloudbees.plugins.credentials.common.*
+import com.cloudbees.plugins.credentials.domains.Domain
+import com.cloudbees.plugins.credentials.impl.*
+import hudson.util.Secret
+import java.nio.file.Files
+import jenkins.model.Jenkins
+import net.sf.json.JSONObject
+import org.jenkinsci.plugins.plaincredentials.impl.*
+
 def slackToken = System.getenv('JENKINS_SLACK_TOKEN') ?: ''
 def slackCompany = System.getenv('JENKINS_SLACK_COMPANY') ?: ''
 
 if(slackToken != '' && slackCompany != '') {
-  import com.cloudbees.jenkins.plugins.sshcredentials.impl.*
-  import com.cloudbees.plugins.credentials.*
-  import com.cloudbees.plugins.credentials.common.*
-  import com.cloudbees.plugins.credentials.domains.Domain
-  import com.cloudbees.plugins.credentials.impl.*
-  import hudson.util.Secret
-  import java.nio.file.Files
-  import jenkins.model.Jenkins
-  import net.sf.json.JSONObject
-  import org.jenkinsci.plugins.plaincredentials.impl.*
-
   // parameters
   def slackCredentialParameters = [
     description: 'Slack token',
