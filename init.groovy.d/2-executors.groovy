@@ -1,2 +1,5 @@
 import jenkins.model.*
-Jenkins.instance.setNumExecutors(5)
+
+def executorsNum = System.getenv('JENKINS_EXECUTORS') ?: 5
+
+Jenkins.instance.setNumExecutors(executorsNum)
