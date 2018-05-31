@@ -15,3 +15,4 @@ workflow-aggregator
 git
 matrix-auth
 pipeline-stage-view
+keyboard-shortcuts
