@@ -4,9 +4,11 @@ import hudson.util.Secret
 import org.jenkinsci.plugins.saml.*
 
 def idpMetadataUrl = System.getenv('JENKINS_SAML_IDP_METADATA_URL') ?: ''
+def idpKeystoreFile = System.getenv('JENKINS_SAML_KEYSTORE_FILE') ?: '/var/jenkins_home/saml.jks'
+def idpKeystorePassword = System.getenv('JENKINS_SAML_KEYSTORE_PASSWORD') ?: 'password'
 
 if(idpMetadataUrl != '') {
-  println("Setting up SAML with IdP metadata from ${idpMetadataUrl}...")
+  println("Setting up SAML with IdP metadata from ${idpMetadataUrl} using keystore ${idpKeystoreFile}...")
 
   def instance = Jenkins.getInstance()
 
@@ -19,7 +21,7 @@ if(idpMetadataUrl != '') {
     "",
     "",
   null,
-    new SamlEncryptionData('/var/jenkins_home/saml.jks', Secret.fromString('password'), Secret.fromString('password'), ''),
+    new SamlEncryptionData(idpKeystoreFile, Secret.fromString(idpKeystorePassword), Secret.fromString(idpKeystorePassword), ''),
     "none",
     "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
     )
