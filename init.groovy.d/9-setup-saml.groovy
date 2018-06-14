@@ -24,7 +24,8 @@ if(idpMetadataUrl != '') {
   null,
     new SamlEncryptionData(idpKeystoreFile, Secret.fromString(idpKeystorePassword), Secret.fromString(idpKeystorePassword), idpKeystoreAlias, false),
     "none",
-    "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+    "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect",
+    []
     )
 
   instance.setSecurityRealm(samlRealm)
