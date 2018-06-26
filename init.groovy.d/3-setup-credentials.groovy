@@ -4,6 +4,7 @@ import com.cloudbees.plugins.credentials.common.*
 import com.cloudbees.plugins.credentials.domains.*
 import com.cloudbees.plugins.credentials.impl.*
 import com.cloudbees.jenkins.plugins.sshcredentials.impl.*
+import com.cloudbees.jenkins.plugins.plaincredentials.impl.*
 import hudson.plugins.sshslaves.*
 import groovy.io.FileType
 import java.nio.file.*
