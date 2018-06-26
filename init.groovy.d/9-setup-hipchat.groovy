@@ -17,14 +17,21 @@ if ( Jenkins.instance.pluginManager.activePlugins.find { it.shortName == "hipcha
   for(Field f:fld){
     f.setAccessible(true);
     switch (f.getName()) {
-      case "server"         : f.set(descriptor, "hipchat.mydomain.com")
-                            break
-      case "token"          : f.set(descriptor, "TOKEN")
-                            break
-      case "buildServerUrl" : f.set(descriptor, "/")
-                            break
-      case "sendAs"         : f.set(descriptor, "jenkinsbot")
-                            break
+      case "server":
+        f.set(descriptor, hipchatServer)
+        break
+
+      case "token":
+        f.set(descriptor, hipchatToken)
+        break
+
+      case "buildServerUrl":
+        f.set(descriptor, "/")
+        break
+
+      case "sendAs":
+        f.set(descriptor, hipchatSendAs)
+        break
     }
   }
 }
