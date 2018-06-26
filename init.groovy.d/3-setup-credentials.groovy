@@ -35,10 +35,10 @@ dir.eachFileRecurse(FileType.FILES) { file ->
 dir = new File("/credentials/plain")
 
 dir.eachFileRecurse(FileType.FILES) { file ->
-
   println "Adding plain credential from file ${file.path}..."
 
-  def secretBytes = SecretBytes.fromBytes(Files.readAllBytes(file.path))
+  def path = Paths.get(file.path)
+  def secretBytes = SecretBytes.fromBytes(Files.readAllBytes(path))
   def credentials = new FileCredentialsImpl(CredentialsScope.GLOBAL, file.name, '', file.name, secretBytes)
 
   store.addCredentials(domain, credentials)
