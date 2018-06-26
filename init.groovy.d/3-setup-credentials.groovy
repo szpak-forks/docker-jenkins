@@ -8,6 +8,7 @@ import org.jenkinsci.plugins.plaincredentials.impl.*
 import hudson.plugins.sshslaves.*
 import groovy.io.FileType
 import java.nio.file.*
+import hudson.util.*
 
 domain = Domain.global()
 store = Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
@@ -37,9 +38,8 @@ dir = new File("/credentials/plain")
 dir.eachFileRecurse(FileType.FILES) { file ->
   println "Adding plain credential from file ${file.path}..."
 
-  def path = Paths.get(file.path)
-  def secretBytes = SecretBytes.fromBytes(Files.readAllBytes(path))
-  def credentials = new FileCredentialsImpl(CredentialsScope.GLOBAL, file.name, '', file.name, secretBytes)
+  def secret = new File(file.path).text
+  def credentials = new StringCredentialsImpl(CredentialsScope.GLOBAL, file.name, '', new Secret(secret))
 
   store.addCredentials(domain, credentials)
 }
