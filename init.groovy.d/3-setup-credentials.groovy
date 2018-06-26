@@ -38,7 +38,7 @@ dir = new File("/credentials/plain")
 dir.eachFileRecurse(FileType.FILES) { file ->
   println "Adding plain credential from file ${file.path}..."
 
-  def secret = new File(file.path).text
+  def secret = new File(file.path).text.trim()
   def credentials = new StringCredentialsImpl(CredentialsScope.GLOBAL, file.name, '', new Secret(secret))
 
   store.addCredentials(domain, credentials)
