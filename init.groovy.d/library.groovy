@@ -66,7 +66,7 @@ if(libraryRepoUrl?.trim() && libraryCredentialsId?.trim()) {
           'defaultVersion': 'master',
           'implicit': true,
           'allowVersionOverride': true,
-          'includeInChangesets': true,
+          'includeInChangesets': false,
           'scm': [
               'remote': libraryRepoUrl,
               'credentialsId': libraryCredentialsId
